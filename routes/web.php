@@ -18,8 +18,10 @@ Route::get('/', function () {
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/user', 'AdminController@user');
 Route::get('/admin/product', 'AdminController@product');
-Route::get('/admin/category', 'AdminController@category');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/admin/logout', 'Auth\LoginController@logout');
+
+Route::resource('/admin/category', 'CategoryController');
+Route::resource('/admin/product', 'ProductController');

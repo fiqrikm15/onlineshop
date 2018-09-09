@@ -9,7 +9,7 @@ Double V Shop | Admin Panel
 	<div>
 		<div class="uk-card uk-card-primary uk-width-1-1@m">
 			<div class="uk-card-body">
-				<strong><h3>Total Product:</h3></strong>1
+				<strong><h3>Total Product:</h3></strong>{{ $prod_count }}
 			</div>
 			<div class="uk-card-footer">
 				<a href="#" class="uk-button uk-button-text">Manage Product</a>
@@ -19,17 +19,17 @@ Double V Shop | Admin Panel
 	<div>
 		<div class="uk-card uk-card-primary uk-width-1-1@m">
 			<div class="uk-card-body">
-				<strong><h3>Total Category:</h3></strong>1
+				<strong><h3>Total Category:</h3></strong>{{ $cat_count }}
 			</div>
 			<div class="uk-card-footer">
-				<a href="#" class="uk-button uk-button-text">Manage Category</a>
+				<a href="{{ route('category.index') }}" class="uk-button uk-button-text">Manage Category</a>
 			</div>
 		</div>
 	</div>
 	<div>
 		<div class="uk-card uk-card-primary uk-width-1-1@m">
 			<div class="uk-card-body">
-				<strong><h3>Total Article:</h3></strong>1
+				<strong><h3>Total Article:</h3></strong>{{ $news_count }}
 			</div>
 			<div class="uk-card-footer">
 				<a href="#" class="uk-button uk-button-text">Manage Article</a>
@@ -48,10 +48,12 @@ Double V Shop | Admin Panel
 				</div>
 			</div>
 			<div class="uk-card-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+				<p><strong>Product Name:</strong> {{ $last_post->product_name }}</p>
+				<p><strong>Created At:</strong> {{ date('d-M-Y', strtotime($last_post->created_at)) }}</p>
+				<p><strong>Last Updated:</strong> {{ date('d-M-Y', strtotime($last_post->updated_at)) }}</p>
 			</div>
 			<div class="uk-card-footer uk-text-center">
-				<a href="#" class="uk-button uk-button-text">Read more</a>
+				<a href="#" class="uk-button uk-button-text">Manage Product</a>
 			</div>
 		</div>
 	</div><br>
@@ -68,7 +70,7 @@ Double V Shop | Admin Panel
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
 			</div>
 			<div class="uk-card-footer uk-text-center">
-				<a href="#" class="uk-button uk-button-text">Read more</a>
+				<a href="#" class="uk-button uk-button-text">Manage Article</a>
 			</div>
 		</div>
 	</div><br>

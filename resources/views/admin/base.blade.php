@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="{{ asset('css/theme.css') }}"> <!-- Resource style -->
 	<link rel="stylesheet" href="{{ asset('css/nav.css') }}"> <!-- CSS reset -->
 	<link rel="stylesheet" href="{{ asset('css/style.css') }}"> <!-- Resource style -->
+	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 	
 	<script src="js/modernizr.js"></script> <!-- Modernizr -->
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -66,21 +67,31 @@
 				<li class="cd-label">Menu</li>
 				<li class="has-children overview"><a href="{{ url('/admin') }}">Dashboard</a></li>
 				<li class="has-children bookmarks">
+					@if(!Request::is('admin/product/*'))
 					<a href="#">Product</a>
-					
+					@else
+					<a href="{{ route('product.index') }}">Product</a>
+					@endif
+
 					<ul>
-						<li><a href="#widgets/tabs">Add Product</a></li>
-						<li><a href="#widgets/modals">Manage Product</a></li>
+						<li><a href="{{ route('product.create') }}">Add Product</a></li>
+						<li><a href="{{ route('product.index')}}">Manage Product</a></li>
 					</ul>
 				</li>
+
 				<li class="has-children bookmarks">
+					@if(!Request::is('admin/category/*'))
 					<a href="#">Category</a>
+					@else
+					<a href="{{ route('category.index') }}">Category</a>
+					@endif
 					
 					<ul>
-						<li><a href="#widgets/tabs">Add Category</a></li>
-						<li><a href="#widgets/modals">Manage Category</a></li>
+						<li><a href="{{ route('category.create') }}">Add Category</a></li>
+						<li><a href="{{ route('category.index') }}">Manage Category</a></li>
 					</ul>
 				</li>
+				
 				<li class="has-children bookmarks">
 					<a href="#">Article</a>
 					
