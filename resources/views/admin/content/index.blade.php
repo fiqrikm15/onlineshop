@@ -12,7 +12,7 @@ Double V Shop | Admin Panel
 				<strong><h3>Total Product:</h3></strong>{{ $prod_count }}
 			</div>
 			<div class="uk-card-footer">
-				<a href="#" class="uk-button uk-button-text">Manage Product</a>
+				<a href="{{ route('product.index') }}" class="uk-button uk-button-text">Manage Product</a>
 			</div>
 		</div>
 	</div>

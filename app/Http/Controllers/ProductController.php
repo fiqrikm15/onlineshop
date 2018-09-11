@@ -3,17 +3,31 @@
 namespace DoubleVShop\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class ProductController extends Controller
 {
 	// views function
 	function index(){
-		return view('admin/content/product');
+        $products = DB::table('products')
+                    ->join('categories', 'categories.id', '=', 'products.category_id')
+                    ->orderBy('products.created_at', 'DESC')
+                    ->paginate(5);
+		return view('admin/content/product', compact('products'));
+        // return json_decode($products);
 	}
 
     function create(){
     	$categories = \DoubleVShop\Category::all();
     	return view('admin/content/form/CreateProduct', compact('categories'));
+    }
+
+    function show(Request $request, $id){
+
+    }
+
+    function edit(Request $request, $id){
+
     }
 
     // logical fuunction
@@ -64,5 +78,13 @@ class ProductController extends Controller
 	    		}
     		}
     	}
+    }
+
+    function update(Request $request, $id){
+
+    }
+
+    function destroy(Request $request, $id){
+        
     }
 }
