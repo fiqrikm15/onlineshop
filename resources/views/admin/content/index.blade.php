@@ -48,9 +48,13 @@ Double V Shop | Admin Panel
 				</div>
 			</div>
 			<div class="uk-card-body">
+				@if($prod_count != 0)
 				<p><strong>Product Name:</strong> {{ $last_post->product_name }}</p>
 				<p><strong>Created At:</strong> {{ date('d-M-Y', strtotime($last_post->created_at)) }}</p>
 				<p><strong>Last Updated:</strong> {{ date('d-M-Y', strtotime($last_post->updated_at)) }}</p>
+				@else
+				<p>Tidak ada produk tersedia.</p>
+				@endif
 			</div>
 			<div class="uk-card-footer uk-text-center">
 				<a href="#" class="uk-button uk-button-text">Manage Product</a>

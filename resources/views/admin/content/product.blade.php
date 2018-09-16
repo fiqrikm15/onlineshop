@@ -32,23 +32,25 @@ Double V Shop | Admin Panel
 		    </tr>
 		  </thead>
 		  <tbody>
+		  	
 		  	@foreach($products as $product)
-			  	<tr>
-	            	<td width="30%">{{ $product->product_name }}</td>
-	            	<td>{{ $product->category_name }}</td>
-	            	<td>{{ $product->qty }}</td>
-	            	<td>{{ $product->jenis_kelamin }}</td>
-	            	<td uk-margin>
-	            		<a href="{{ route('product.show', $product->id) }}" class="uk-button uk-button-default uk-button-small uk-align-left@s">Show</a> 
-	            		<a href="{{ route('product.edit', $product->id) }}" class="uk-button uk-button-primary uk-button-small uk-align-left@s">Edit</a> 
-	            		<form action="{{ route('product.destroy', $product->id) }}" method="post" class="uk-align-left@s">
-	            			@csrf
-	            			<input type="hidden" name="_method" value="DELETE">
-	            			<button type="submit" class="uk-button uk-button-danger uk-button-small" onclick="return confirm('Anda yakin ingin menghapus kategori ini?')">Delete</button>
-	            		</form>
-	            	</td>
-		        </tr>
+		  	<tr>
+		  		<td>{{ $product->product_name }}</td>
+			  	<td>{{ $product->category_name }}</td>
+			  	<td>{{ $product->qty }}</td>
+			  	<td>{{ $product->jenis_kelamin }}</td>
+			  	<td uk-margin>
+	        		<a href="{{ route('product.show', $product->id) }}" class="uk-button uk-button-default uk-button-small uk-align-left@s">Show</a> 
+	        		<a href="{{ route('product.edit', $product->id) }}" class="uk-button uk-button-primary uk-button-small uk-align-left@s">Edit</a> 
+	        		<form action="{{ route('product.destroy', $product->id) }}" method="post" class="uk-align-left@s">
+	        			@csrf
+	        			<input type="hidden" name="_method" value="DELETE">
+	        			<button type="submit" class="uk-button uk-button-danger uk-button-small" onclick="return confirm('Anda yakin ingin menghapus kategori ini?')">Delete</button>
+	        		</form>
+	        	</td>
+	        </tr>
 		  	@endforeach
+		  	
 		  </tbody>
 		</table>
 		{{ $products->links() }}
