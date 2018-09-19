@@ -23,6 +23,7 @@ Double V Shop | Edit Product
 
 			<form action="{{ route('product.update', $product[0]->id) }}" method="post" class="uk-form-horizontal uk-margin-large" enctype="multipart/form-data">
 				{{ csrf_field() }}
+				<input name="_method" type="hidden" value="PATCH">
 				<div class="uk-margin">
 			        <label class="uk-form-label" for="form-horizontal-text">Product Name</label>
 			        <div class="uk-form-controls">
@@ -83,7 +84,8 @@ Double V Shop | Edit Product
 			    </div>
 
 			    <div class="uk-margin">
-			    	<button type="submit" class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom">Save Product</button>
+			    	<button type="submit" class="uk-button uk-button-default uk-width-1-1@m uk-margin-small-bottom">Save Product</button>
+					<a href="{{ url('admin/product') }}" class="uk-button uk-button-secondary uk-width-1-1@m">Cancel</a>
 			    </div>
 			</form>
 		</div>

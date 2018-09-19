@@ -71,7 +71,11 @@ Double V Shop | Admin Panel
 				</div>
 			</div>
 			<div class="uk-card-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+				@if($news_count)
+					Pass
+				@else
+					<p>Tidak ada artikel terbaru.</p>
+				@endif
 			</div>
 			<div class="uk-card-footer uk-text-center">
 				<a href="#" class="uk-button uk-button-text">Manage Article</a>

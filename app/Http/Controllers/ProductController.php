@@ -111,6 +111,7 @@ class ProductController extends Controller
             $productImages = DB::table('product_images')
                         ->where('product_images.product_id', $id)
                         ->get();
+
             $img_arr = [];
 
             foreach($productImages as $img){
@@ -121,29 +122,46 @@ class ProductController extends Controller
             $msg = "";
             
             if($product->save()){
-                for($i = 0; $i < $len; $i++){
-                    if(file_exists(public_path('uploads/'.$img_arr[$i]))){
-                        unlink(public_path('uploads/'.$img_arr[$i]));
+                if($product->productImages()->delete()){
+                    for($i = 0; $i < $len; $i++){
+                        if(file_exists(public_path('uploads/'.$img_arr[$i]))){
+                            unlink(public_path('uploads/'.$img_arr[$i]));
+                        }
                     }
                 }
 
-                for($i=0; $i < $image_len; $i++){
-                    $image_size = $image_array[$i]->getClientSize();
-                    $image_ext = $image_array[$i]->getClientOriginalExtension();
-                    $new_name = rand(123456, 999999).'.'.$image_ext;
-                    $destination_path = public_path('/uploads');
+                // for($i = 0; $i < $len; $i++){
+                //     if(file_exists(public_path('uploads/'.$img_arr[$i]))){
+                //         unlink(public_path('uploads/'.$img_arr[$i]));
+                //     }
+                // }
 
-                    $uploadImage = new \DoubleVShop\ProductImage;
-                    $uploadImage->image_name = $new_name;
-                    $uploadImage->image_size = $image_size;
+                if($request->hasFile('product_image')){
+	    			$image_array = $request->file('product_image');
+	    			$image_len = count($image_array);
 
-                    if($product->productImages()->save($uploadImage)){
-                        $image_array[$i]->move($destination_path, $new_name);
-                        $msg = "Product berhasil ditambahkan.";
-                    }
-                }
+	    			for($i=0; $i < $image_len; $i++){
+	    				$image_size = $image_array[$i]->getClientSize();
+	    				$image_ext = $image_array[$i]->getClientOriginalExtension();
+	    				$new_name = rand(123456, 999999).'.'.$image_ext;
+	    				$destination_path = public_path('/uploads');
+
+	    				$uploadImage = new \DoubleVShop\ProductImage;
+	    				$uploadImage->image_name = $new_name;
+	    				$uploadImage->image_size = $image_size;
+
+	    				if($product->productImages()->save($uploadImage)){
+	    					$image_array[$i]->move($destination_path, $new_name);
+	    					$msg = "Product berhasil diupdate.";
+	    				}
+	    			}
+
+	    			return back()->with('msg', $msg);
+	    		}else{
+	    			return back()->with('errors', "Product gagal diupdate.");
+	    		}
                 
-                return back()->with('msg', 'Produk berhasil dihapus.');
+                return back()->with('msg', 'Produk berhasil diupdate.');
             }else{
                 return back()->with('errors', 'Product gagal diupdate.');
             }
